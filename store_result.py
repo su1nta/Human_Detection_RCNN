@@ -14,3 +14,4 @@ def store_result(output):
         output_reader = csv.reader(output_file_read)
         for line in output_reader:
             print(line)
+            
