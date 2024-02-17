@@ -67,19 +67,20 @@ class Human_Tracking:
     
     def track_movement(self, frame, tracked_objects):
         for obj in tracked_objects:
-            xmin, ymin, xmax, ymax = obj[:4]
-            x = (xmax + xmin) / 2
-            y = (ymax + ymin) / 2
+            print(obj.features)
+            # xmin, ymin, xmax, ymax = obj['bbox'][:4]
+            # x = (xmax + xmin) / 2
+            # y = (ymax + ymin) / 2
 
-            obj_velocity = np.array([x[1] - x[0], y[1] - y[0]])
+            # obj_velocity = np.array([x[1] - x[0], y[1] - y[0]])
 
-            # determine if the object is still moving
-            if np.linalg.norm(obj_velocity) > 0.1:
-                obj_status = 1
-            else:
-                obj_status = 0
+            # # determine if the object is still moving
+            # if np.linalg.norm(obj_velocity) > 0.1:
+            #     obj_status = 1
+            # else:
+            #     obj_status = 0
             
-            # update the status
-            obj.append(obj_status)
+            # # update the status
+            # obj.append(obj_status)
 
         return tracked_objects
