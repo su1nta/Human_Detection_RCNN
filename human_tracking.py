@@ -65,22 +65,29 @@ class Human_Tracking:
         
         return frame
     
-    def track_movement(self, frame, tracked_objects):
+    def track_movement(self, frame_no, tracked_objects):
+        tracking_table = []
         for obj in tracked_objects:
-            print(obj.features)
-            # xmin, ymin, xmax, ymax = obj['bbox'][:4]
-            # x = (xmax + xmin) / 2
-            # y = (ymax + ymin) / 2
+            xmin, ymin, xmax, ymax = obj.to_ltrb()
+            mean_position = obj.mean
+            time_since_update = obj.time_since_update
 
-            # obj_velocity = np.array([x[1] - x[0], y[1] - y[0]])
+            # calculate displacement per frame
+            if time_since_update == 0:
+                velocity = 0
+            else:
+                displacement = np.linalg.norm(mean_position)
+                velocity = displacement / time_since_update
 
-            # # determine if the object is still moving
-            # if np.linalg.norm(obj_velocity) > 0.1:
-            #     obj_status = 1
-            # else:
-            #     obj_status = 0
+            # determine if the object is still moving
+
+            if velocity < 1 and time_since_update > 0:
+                obj_status = 0      # object is still
+            else:
+                obj_status = 1      # object is moving
             
-            # # update the status
-            # obj.append(obj_status)
+            # update the status
+            table = [frame_no, int(obj.track_id), int(xmin), int(ymin), int(xmax), int(ymax), obj_status]
+            tracking_table.append(table)
 
-        return tracked_objects
+        return tracking_table

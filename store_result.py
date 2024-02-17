@@ -7,8 +7,9 @@ def store_result(output):
     with open('output.csv', 'a') as output_file:
         output_file.write("\n")
         output_writer = csv.writer(output_file)
-        for row in output:
-            output_writer.writerow(row)
+        for frame_row in output:
+            for row in frame_row:
+                output_writer.writerow(row)
 
     with open('output.csv', 'r') as output_file_read:
         output_reader = csv.reader(output_file_read)
