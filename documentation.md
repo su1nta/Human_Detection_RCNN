@@ -2,11 +2,10 @@
 
 ### Table of contents
 - Project Abstract
-- Technologies used in the project
-- Step by step implementation
+- Methodology (How the project works)
+- Experiment
 - Result set (CSV format)
-- Visualizing result
-- Total time taken by algorithm
+- References
 
 ## Abstract
 Real-time object detection and tracking have become vital in various fields such as surveillance, autonomous vehicles, and human-computer interaction. In this project, we present a system that integrates Faster RCNN (Region-based Convolutional Neural Network) for object detection and DeepSORT (Deep Simple Online and Realtime Tracking) for object tracking. The system is capable of accurately detecting and tracking objects in real-time video streams, distinguishing between still and moving objects, and recording their bounding box coordinates along with unique IDs in a CSV (Comma-Separated Values) file.
